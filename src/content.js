@@ -1,11 +1,11 @@
-import i18n from './i18n/index.js';
-
 function addDownloadButtons() {
   console.log("addDownloadButtons");
-  i18n.init();
 
   const versionTable = document.querySelector("table.version-history-table");
-  if (!versionTable) return;
+  if (!versionTable) {
+    setTimeout(addDownloadButtons, 1000);
+    return;
+  }
 
   // 获取所有版本行
   const rows = versionTable.querySelectorAll(
@@ -31,7 +31,7 @@ function addDownloadButtons() {
     console.log(version);
 
     const downloadBtn = document.createElement("button");
-    downloadBtn.textContent = i18n.t('downloadButton');
+    downloadBtn.textContent = "Download";
     downloadBtn.style.cssText =
       "padding: 4px 12px; border-radius: 4px; border: 1px solid #0078d4; background: #0078d4; color: white; cursor: pointer;";
     downloadBtn.className = "download-btn";
